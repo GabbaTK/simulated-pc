@@ -1,0 +1,19 @@
+db R60000 1 text Shutting down...
+spr printText
+rb R[text]
+ptm
+
+lbl printText
+# Couter EAX
+# End point EBX
+mov [text] EAX
+mov [text] EBX
+mov R[text] ECX
+add EBX ECX EBX
+
+lbl printText_print
+inc EAX
+mov R[EAX] ESX
+prt
+jne printText_print EAX EBX
+spe

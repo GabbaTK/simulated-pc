@@ -1,0 +1,28 @@
+# Get command
+lbl getCommand
+scl
+db R60000 1 text root@root:/usr/ >
+spr printText
+rb R[text]
+
+gin R64000 1 EAX
+run bin/R[EAX]
+
+jmp getCommand
+
+end
+
+lbl printText
+# Couter EAX
+# End point EBX
+mov [text] EAX
+mov [text] EBX
+mov R[text] ECX
+add EBX ECX EBX
+
+lbl printText_print
+inc EAX
+mov R[EAX] ESX
+prt
+jne printText_print EAX EBX
+spe

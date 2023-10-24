@@ -1,0 +1,59 @@
+# Inicialise reserved memory space
+scl
+db R60000 1 text Starting...
+spr printText
+nlp
+rb R[text]
+db R60000 1 text Reserving memory space, please wait... 0%
+spr printText
+rb R[text]
+rr R60000 1000 1
+db R60000 1 text Reserving memory space, please wait... 17%
+scl
+spr printText
+rb R[text]
+rr R61000 1000 1
+db R60000 1 text Reserving memory space, please wait... 34%
+scl
+spr printText
+rb R[text]
+rr R62000 1000 1
+db R60000 1 text Reserving memory space, please wait... 51%
+scl
+spr printText
+rb R[text]
+rr R63000 1000 1
+db R60000 1 text Reserving memory space, please wait... 68%
+scl
+spr printText
+rb R[text]
+rr R64000 1000 1
+db R60000 1 text Reserving memory space, please wait... 85%
+scl
+spr printText
+rb R[text]
+rr R65000 535 1
+db R60000 1 text Reserving memory space, please wait... 100%
+scl
+spr printText
+rb R[text]
+
+# Call usr function
+run usr/usr
+
+end
+
+lbl printText
+# Couter EAX
+# End point EBX
+mov [text] EAX
+mov [text] EBX
+mov R[text] ECX
+add EBX ECX EBX
+
+lbl printText_print
+inc EAX
+mov R[EAX] ESX
+prt
+jne printText_print EAX EBX
+spe
